@@ -1,26 +1,11 @@
 const Shimmer = () => {
-  return (
-    <div className="shimmer-container">
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-    </div>
-  );
+  const shimmerCards = [];
+
+  for (let i = 0; i < 19; i++) {
+    shimmerCards.push(<div key={i} className="shimmer-card"></div>);
+  }
+
+  return <div className="shimmer-container">{shimmerCards}</div>;
 };
 
 export default Shimmer;

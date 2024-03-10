@@ -1,47 +1,46 @@
-import { LOGO_URL } from "../utils/constants";
+import foodAppLogo from '../assets/logos/foodAppLogo.png';
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btnNameReact, setBtnNameReact] = useState("Login");
 
-  const onlineStatus = useOnlineStatus();
-
   const { loggedInUser } = useContext(UserContext);
-  //console.log(loggedInUser);
 
-  // Subscribing to the store using a Selector
+  // Subscribing to the store when using a Selector
   const cartItems = useSelector((store) => store.cart.items);
-  //console.log(cartItems);
 
   return (
-    <div className="flex justify-between bg-pink-100 shadow-lg sm:bg-yellow-50 lg:bg-green-50">
+    <div className="flex justify-between bg-green-300">
       <div className="logo-container">
-        <img className="w-56" src={LOGO_URL} />
+        <img className="w-28" src={foodAppLogo} />
       </div>
       <div className="flex items-center">
         <ul className="flex p-4 m-4">
-          <li className="px-4">Online Status: {onlineStatus ? "✅" : "🔴"}</li>
-          <li className="px-4">
+          <li className="text-gray-800 px-2 py-2 hover:pb-1 hover:border-b hover:border-black inline-block transition duration-300 ease-in-out text-xl font-medium font-serif">
             <Link to="/">Home</Link>
           </li>
-          <li className="px-4">
-            <Link to="/about">About Us</Link>
+          <li className="text-gray-800 hover:pb-1 hover:border-b hover:border-black font-medium px-2 py-2 inline-block transition duration-300 ease-in-out text-xl font-serif">
+            <Link to="/about"> About Us</Link>
           </li>
-          <li className="px-4">
-            <Link to="/contact">Contact Us</Link>
+          <li className="text-gray-800 hover:pb-1 hover:border-b hover:border-black font-medium px-2 py-2 inline-block transition duration-300 ease-in-out text-xl font-serif">
+            <Link to="/contact"> Contact Us</Link>
           </li>
-          <li className="px-4">
-            <Link to="/grocery">Grocery</Link>
+          <li className="text-gray-800 hover:pb-1 hover:border-b hover:border-black font-medium px-2 py-2 inline-block transition duration-300 ease-in-out text-xl font-serif">
+            <Link to="/grocery"> Grocery</Link>
           </li>
-          <li className="px-4 font-bold text-xl">
-            <Link to="/cart">Cart - ({cartItems.length} items)</Link>
+          <li className="text-gray-800 hover:pb-1 hover:border-b hover:border-black font-medium px-2 py-2 inline-block transition duration-300 ease-in-out text-xl font-serif">
+            <Link to="/cart"> Cart - ({cartItems.length} items)</Link>
           </li>
+          <li className="text-gray-800 font-medium mr-px mx-8 px-2 py-2 inline-block text-xl font-sans">{loggedInUser}</li>
           <button
-            className="login"
+            className={
+              btnNameReact === "Login" ? 
+              "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" :
+              "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            }
             onClick={() => {
               btnNameReact === "Login"
                 ? setBtnNameReact("Logout")
@@ -50,8 +49,6 @@ const Header = () => {
           >
             {btnNameReact}
           </button>
-
-          <li className="px-4 ">{loggedInUser}</li>
         </ul>
       </div>
     </div>

@@ -2,7 +2,6 @@ import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
-//import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
@@ -12,27 +11,27 @@ import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Cart from "./components/Cart";
 
-//import Grocery from "./components/Grocery";
-
+// Below are just different names for optimizing performance of your app
 // Chunking
 // Code Splitting
 // Dynamic Bundling
 // lazy Loading
 // on demand loading
-// dynamix imoprt
+// dynamix import
 
+// below is lazy loading a component. It will render/mount on browser only when it is used. 
+// This helps to laod our page faster and improve its performance overall
 const Grocery = lazy(() => import("./components/Grocery"));
-
-const About = lazy(() => import("./components/About"));
+const About  = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
-  const [userName, setUserName] = useState();
+  const [userName, setUserName] = useState(null);
 
   //authentication
   useEffect(() => {
-    // Make an API call and send username and password
+    // Make here an API call and send username and password
     const data = {
-      name: "Akshay Saini",
+      name: "Manthan Raut",
     };
     setUserName(data.name);
   }, []);
@@ -61,7 +60,7 @@ const appRouter = createBrowserRouter([
       {
         path: "/about",
         element: (
-          <Suspense fallback={<h1>Loading....</h1>}>
+          <Suspense fallback={<h1>About page is Loading...Please wait!</h1>}>
             <About />
           </Suspense>
         ),
@@ -92,5 +91,4 @@ const appRouter = createBrowserRouter([
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
 root.render(<RouterProvider router={appRouter} />);
